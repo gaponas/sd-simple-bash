@@ -20,4 +20,6 @@ $ ./gradlew build
 |---- src/ru/sd <- тесты (TODO)
 ```
 
+## licence
 
+no licence
