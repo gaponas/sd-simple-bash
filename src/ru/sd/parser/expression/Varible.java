@@ -1,6 +1,8 @@
 package ru.sd.parser.expression;
 
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 import ru.sd.interpretator.Enviroment;
 
@@ -9,10 +11,10 @@ public class Varible implements Expression {
     public Varible(String _name) {
         name = _name;
     }
-    public String run(InputStream stdin, Enviroment env) {
+    public void run(InputStream in, OutputStream out, Enviroment env) {
         String val = env.get(name);
         if(val == null) val = "";
-        return val;
+        new PrintStream(out).print(val);
     }
     public void print() {
         System.out.println("=========");

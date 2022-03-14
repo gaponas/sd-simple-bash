@@ -13,12 +13,12 @@ public class Interpretator {
         env = new Enviroment(manager);
     }
 
-    public String go(String cmnd) {
+    public void go(String cmnd) {
         Parser p = new Parser(cmnd);
         var ast = p.parse();
         if(ast instanceof BadExpression) {
-            return "";
+            return;
         }
-        return ast.run(System.in, env);
+        ast.run(System.in, System.out, env);
     }
 }

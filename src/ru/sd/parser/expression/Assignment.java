@@ -1,6 +1,8 @@
 package ru.sd.parser.expression;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import ru.sd.interpretator.Enviroment;
 
@@ -11,9 +13,10 @@ public class Assignment implements Expression {
         name = _var;
         val = _val;
     }
-    public String run(InputStream stdin, Enviroment env) {
-        env.add(name, val.run(stdin, env));
-        return "";
+    public void run(InputStream in, OutputStream out, Enviroment env) {
+        out = new ByteArrayOutputStream();
+        val.run(in, out, env);
+        env.add(name, out.toString());
     }
     public void print() {
         System.out.println("=========");

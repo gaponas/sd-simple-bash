@@ -10,6 +10,7 @@ public class CommandManager {
         storage.put("echo", new Echo());
         storage.put("exit", new Exit());
         storage.put("pwd", new Pwd());
+        storage.put("add", new Add());
     }
     public Command get(String name) {
         var cmnd = storage.get(name);

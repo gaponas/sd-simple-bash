@@ -1,6 +1,9 @@
 package ru.sd.parser.expression;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,7 +31,7 @@ public class WString implements Expression {
         type = _type;
         params = _params;
     }
-    public String run(InputStream stdin, Enviroment env) {
+    public void run(InputStream in, OutputStream out, Enviroment env) {
         String locString = text;
         if(type == "sstring") {
             locString = removeQs(locString, '\'');
@@ -38,11 +41,13 @@ public class WString implements Expression {
         }
         List<String> strs = new LinkedList<String>();
         for(var p : params) {
-            strs.add(p.run(stdin, env));
+            OutputStream os = new ByteArrayOutputStream();
+            p.run(in, os, env);
+            strs.add(os.toString());
         }
 
         var res = String.format(locString, strs.toArray());
-        return res;
+        new PrintStream(out).print(res);
     }
     public void print() {
         System.out.println("=========");

@@ -18,8 +18,8 @@ public class Enviroment {
         env = new HashMap<String, String>();
         manager = mngr; 
     }
-    public OutputStream call(String name, String args[], InputStream is) {
-        return manager.get(name).run(args, is, this);
+    public OutputStream call(String name, String args[], InputStream is, OutputStream os) {
+        return manager.get(name).run(args, this, is, os);
     }
 
     public void add(String key, String value) {

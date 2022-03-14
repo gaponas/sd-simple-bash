@@ -1,6 +1,8 @@
 package ru.sd.parser.expression;
 
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 import ru.sd.interpretator.Enviroment;
 
@@ -12,8 +14,8 @@ public class BadExpression implements Expression {
     public BadExpression() {
         reason = "Oops, smth broke...";
     }
-    public String run(InputStream stdin, Enviroment env) {
-        return reason;
+    public void run(InputStream in, OutputStream out, Enviroment env) {
+        new PrintStream(out).println(reason);
     }
     public void print() {
         System.out.println("=========");

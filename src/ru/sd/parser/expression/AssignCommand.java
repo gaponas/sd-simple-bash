@@ -1,5 +1,7 @@
 package ru.sd.parser.expression;
+
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import ru.sd.interpretator.Enviroment;
@@ -10,11 +12,10 @@ public class AssignCommand implements Expression {
     public AssignCommand(List<Expression> assigns) {
         assignments = assigns;
     }
-    public String run(InputStream stdin, Enviroment env) {
+    public void run(InputStream in, OutputStream out, Enviroment env) {
         for(var a : assignments) {
-            a.run(stdin, env);
+            a.run(in, out, env);
         }
-        return "";
     }
     public void print() {
         System.out.println("Inner command");

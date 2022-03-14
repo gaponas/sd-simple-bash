@@ -1,5 +1,7 @@
 package ru.sd.parser.expression;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,16 +18,24 @@ public class Command implements Expression {
         arguments = args;
         assignments = assign;
     }
-    public String run(InputStream stdin, Enviroment env) {
+    public void run(InputStream in, OutputStream out, Enviroment env) {
         Enviroment local = env.clone();
         for(var a : assignments) {
-            a.run(stdin, local);
+            a.run(in, out, local);
         }
         List<String> args = new LinkedList<String>();
         for(var a : arguments) {
-            args.add(a.run(stdin, local));
+            OutputStream os = new ByteArrayOutputStream();
+            a.run(in, os, local);
+            args.add(os.toString());
         }
-        return local.call(command.run(stdin, local), args.toArray(new String[0]), stdin).toString();
+
+        
+        OutputStream cos = new ByteArrayOutputStream();
+        command.run(in, cos, env);
+        String cmnd = cos.toString();
+
+        local.call(cmnd, args.toArray(new String[0]), in, out);
     }
     public void print() {
         System.out.println("=========");

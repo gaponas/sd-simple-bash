@@ -11,14 +11,14 @@ public class Program {
         CommandManager cmnds = new CommandManager();
         Interpretator i = new Interpretator(cmnds);
         if(args.length > 0) {
-            System.out.println(i.go(args[0]));
+            i.go(args[0]);
             return;
         }
         Scanner sc = new Scanner(System.in);
         System.out.print("$ ");
         while(sc.hasNextLine()) {
             String cmnd = sc.nextLine();
-            System.out.print(i.go(cmnd));
+            i.go(cmnd);
             System.out.print("$ ");
         }
         sc.close();         
