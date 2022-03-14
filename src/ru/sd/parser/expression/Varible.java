@@ -8,6 +8,10 @@ import ru.sd.interpretator.Enviroment;
 
 public class Varible implements Expression {
     private String name;
+    /**
+     * Enviroment varible
+     * @param _name Varible name
+     */
     public Varible(String _name) {
         name = _name;
     }

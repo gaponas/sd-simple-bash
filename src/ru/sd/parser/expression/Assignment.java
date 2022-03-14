@@ -9,6 +9,11 @@ import ru.sd.interpretator.Enviroment;
 public class Assignment implements Expression {
     private String name;
     private Expression val;
+    /**
+     * Single assignment
+     * @param _var varible name
+     * @param _val varible value in terms of expressions
+     */
     public Assignment(String _var, Expression _val) {
         name = _var;
         val = _val;

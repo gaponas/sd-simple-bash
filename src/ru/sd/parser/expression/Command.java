@@ -13,6 +13,12 @@ public class Command implements Expression {
     private List<Expression> arguments;
     private List<Expression> assignments;
 
+    /**
+     * Comand node, makes call to command set and executes command
+     * @param cmnd command name
+     * @param args command arguments
+     * @param assign local eniroment varibles
+     */
     public Command(Expression cmnd, List<Expression> args, List<Expression> assign) {
         command = cmnd;
         arguments = args;

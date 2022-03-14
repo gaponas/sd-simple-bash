@@ -9,6 +9,10 @@ import ru.sd.interpretator.Enviroment;
 public class AssignCommand implements Expression {
     private List<Expression> assignments;
 
+    /**
+     * Ast node to do assignment enviroment varibles
+     * @param assigns varibles
+     */
     public AssignCommand(List<Expression> assigns) {
         assignments = assigns;
     }

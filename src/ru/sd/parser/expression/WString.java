@@ -22,10 +22,15 @@ public class WString implements Expression {
                 continue;
             r += c;
         }
-
         return r;
     }
 
+    /**
+     * String 
+     * @param txt String pattern 
+     * @param _type String type, StrongQuouted, WeakQuouted, NotQuouted 
+     * @param _params Expression, inside string
+     */
     public WString(String txt, String _type, List<Expression> _params) {
         text = txt;
         type = _type;

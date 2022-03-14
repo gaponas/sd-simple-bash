@@ -4,6 +4,9 @@ import java.util.List;
 
 import ru.sd.parser.expression.*;
 
+/**
+ * Parser creates AST from String
+ */
 public class Parser {
 
     private class LexRecord {
@@ -156,6 +159,10 @@ public class Parser {
         return new LexRecord("wrapper", "", res);
     }
 
+    /**
+     * Debug propose print
+     * @param exp Root expression 
+     */
     public void print(Expression exp) {
         exp.print();
     }
@@ -235,7 +242,10 @@ public class Parser {
         return exp == null ? resCmnd : new Pipe(exp, resCmnd);
     }
     
-    /* public stuff */
+    /**
+     * Parses the input and returns AST root
+     * @return AST root
+     */
     public Expression parse() {
         var tree = lex(false);
         var res = parseLocalLex(tree);
@@ -243,9 +253,8 @@ public class Parser {
     }
 
     /**
-    * Description <- lol kek
-    * @param _input Guess what?
-    * @return nothing
+    * Init parser
+    * @param _input String to parse
     */
     public Parser(String _input) {
         _input = _input + ' ';

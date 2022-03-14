@@ -4,7 +4,18 @@ plugins {
 }
 
 group = 'ru.ide'
-version = '1.0-SNAPSHOT'
+version = '0.5'
+
+checkstyle {
+    toolVersion '7.8.1'
+    configFile file("config/checkstyle/checkstyle.xml")
+}
+checkstyleMain {
+    source ='src'
+}
+checkstyleTest {
+    source ='test'
+}
 
 repositories {
     mavenCentral()

@@ -2,6 +2,9 @@ package ru.sd.commands.defaults;
 
 import ru.sd.interpretator.Enviroment;
 
+/**
+ * Echo command
+ */
 public class Echo extends Command {
     protected void go(String args[], Enviroment env) {
         for(var a : args) {

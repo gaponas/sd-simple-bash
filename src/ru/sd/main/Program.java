@@ -4,6 +4,9 @@ import java.util.Scanner;
 import ru.sd.commands.CommandManager;
 import ru.sd.interpretator.*;
 
+/**
+ * Main 
+ */
 public class Program {
     public static void main(String[] args) {
 

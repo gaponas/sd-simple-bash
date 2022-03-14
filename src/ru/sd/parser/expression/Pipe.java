@@ -12,6 +12,12 @@ public class Pipe implements Expression {
     private Expression first;
     private Expression second;
 
+    /**
+     * Creates two process,that piped one to another 
+     * -> first -> second -> 
+     * @param fst first command
+     * @param snd second command
+     */
     public Pipe(Expression fst, Expression snd) {
         first = fst;
         second = snd;

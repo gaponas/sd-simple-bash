@@ -8,6 +8,10 @@ import ru.sd.interpretator.Enviroment;
 
 public class BadExpression implements Expression {
     private String reason;
+    /**
+     * Error 
+     * @param _reason error message
+     */
     public BadExpression(String _reason) {
         reason = _reason;
     }
