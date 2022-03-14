@@ -10,4 +10,7 @@ public class Add extends Command {
         int b = jin.nextInt();
         jout.println("Answer is " + (a + b));
     }
+    public Command clone() {
+        return new Add();
+    }
 }

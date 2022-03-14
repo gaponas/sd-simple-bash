@@ -4,6 +4,7 @@ import java.util.HashMap;
 import ru.sd.commands.defaults.*;
 
 public class CommandManager {
+    
     private HashMap<String ,Command> storage;
     public CommandManager() {
         storage = new HashMap<String ,Command>();
@@ -17,6 +18,6 @@ public class CommandManager {
         if(cmnd == null) {
             cmnd = new Empty();
         }
-        return cmnd;
+        return cmnd.clone();
     }
 }

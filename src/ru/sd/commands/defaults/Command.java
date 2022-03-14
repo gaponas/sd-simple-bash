@@ -11,6 +11,7 @@ public abstract class Command {
     protected Scanner jin;
     protected PrintStream jout;
     
+    public abstract Command clone();
     protected abstract void go(String[] args, Enviroment env);
     public OutputStream run(String[] args, Enviroment env, InputStream in, OutputStream os) {
         jin = new Scanner(in);

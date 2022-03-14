@@ -10,4 +10,7 @@ public class Echo extends Command {
         }
         jout.println();
     }
+    public Command clone() {
+        return new Echo();
+    }
 }
