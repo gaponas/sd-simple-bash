@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+}
+
+group = 'ru.ide'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.8.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+sourceSets {
+    main {
+        java.srcDirs = ['src']
+        resources.srcDirs = ['resources']
+    }
+    test {
+        java.srcDirs = ['test']
+        resources.srcDirs = ['testResources']
+    }
+}
+
+jar {
+  manifest {
+    attributes(
+        'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+        'Main-Class': 'ru.sd.main.Program'
+    )
+  }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
