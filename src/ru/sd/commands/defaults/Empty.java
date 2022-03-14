@@ -2,8 +2,8 @@ package ru.sd.commands.defaults;
 
 import ru.sd.interpretator.Enviroment;
 
-public class Empty implements Command {
-    public String run(String [] args, String stdin, Enviroment env) {
-        return "Command not found\n";
+public class Empty extends Command {
+    protected void go(String [] args, Enviroment env) {
+        jout.println("Command not found....");
     }
 }

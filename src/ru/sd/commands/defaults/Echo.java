@@ -2,13 +2,12 @@ package ru.sd.commands.defaults;
 
 import ru.sd.interpretator.Enviroment;
 
-public class Echo implements Command {
-    public String run(String args[], String run, Enviroment env) {
-        String res = "";
+public class Echo extends Command {
+    protected void go(String args[], Enviroment env) {
         for(var a : args) {
-            res += a + " ";
+            jout.print(a);
+            jout.print(" ");
         }
-
-        return res + '\n';
+        jout.println();
     }
 }

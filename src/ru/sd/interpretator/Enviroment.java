@@ -1,5 +1,7 @@
 package ru.sd.interpretator;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 
 import ru.sd.commands.CommandManager;
@@ -16,8 +18,8 @@ public class Enviroment {
         env = new HashMap<String, String>();
         manager = mngr; 
     }
-    public String call(String name, String args[]) {
-        return manager.get(name).run(args, "", this);
+    public OutputStream call(String name, String args[], InputStream is) {
+        return manager.get(name).run(args, is, this);
     }
 
     public void add(String key, String value) {

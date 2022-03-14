@@ -2,8 +2,8 @@ package ru.sd.commands.defaults;
 
 import ru.sd.interpretator.Enviroment;
 
-public class Pwd implements Command {
-    public String run(String args[], String run, Enviroment env) {
-        return System.getProperty("user.dir") + '\n';
+public class Pwd extends Command {
+    protected void go(String args[], Enviroment env) {
+        jout.println(System.getProperty("user.dir"));
     }
 }

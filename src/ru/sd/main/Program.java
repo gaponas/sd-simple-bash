@@ -6,6 +6,8 @@ import ru.sd.interpretator.*;
 
 public class Program {
     public static void main(String[] args) {
+
+
         CommandManager cmnds = new CommandManager();
         Interpretator i = new Interpretator(cmnds);
         if(args.length > 0) {

@@ -1,5 +1,6 @@
 package ru.sd.parser.expression;
 
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class WString implements Expression {
         type = _type;
         params = _params;
     }
-    public String run(String stdin, Enviroment env) {
+    public String run(InputStream stdin, Enviroment env) {
         String locString = text;
         if(type == "sstring") {
             locString = removeQs(locString, '\'');

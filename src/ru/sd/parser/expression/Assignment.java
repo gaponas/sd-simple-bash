@@ -1,5 +1,7 @@
 package ru.sd.parser.expression;
 
+import java.io.InputStream;
+
 import ru.sd.interpretator.Enviroment;
 
 public class Assignment implements Expression {
@@ -9,7 +11,7 @@ public class Assignment implements Expression {
         name = _var;
         val = _val;
     }
-    public String run(String stdin, Enviroment env) {
+    public String run(InputStream stdin, Enviroment env) {
         env.add(name, val.run(stdin, env));
         return "";
     }

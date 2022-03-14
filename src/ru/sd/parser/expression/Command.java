@@ -1,4 +1,5 @@
 package ru.sd.parser.expression;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Command implements Expression {
         arguments = args;
         assignments = assign;
     }
-    public String run(String stdin, Enviroment env) {
+    public String run(InputStream stdin, Enviroment env) {
         Enviroment local = env.clone();
         for(var a : assignments) {
             a.run(stdin, local);
@@ -24,7 +25,7 @@ public class Command implements Expression {
         for(var a : arguments) {
             args.add(a.run(stdin, local));
         }
-        return local.call(command.run(stdin, local), args.toArray(new String[0]));
+        return local.call(command.run(stdin, local), args.toArray(new String[0]), stdin).toString();
     }
     public void print() {
         System.out.println("=========");

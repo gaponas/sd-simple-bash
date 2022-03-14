@@ -19,6 +19,6 @@ public class Interpretator {
         if(ast instanceof BadExpression) {
             return "";
         }
-        return ast.run("", env);
+        return ast.run(System.in, env);
     }
 }

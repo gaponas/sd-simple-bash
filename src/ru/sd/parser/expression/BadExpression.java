@@ -1,5 +1,7 @@
 package ru.sd.parser.expression;
 
+import java.io.InputStream;
+
 import ru.sd.interpretator.Enviroment;
 
 public class BadExpression implements Expression {
@@ -10,7 +12,7 @@ public class BadExpression implements Expression {
     public BadExpression() {
         reason = "Oops, smth broke...";
     }
-    public String run(String stdin, Enviroment env) {
+    public String run(InputStream stdin, Enviroment env) {
         return reason;
     }
     public void print() {

@@ -1,5 +1,8 @@
 package ru.sd.parser.expression;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 import ru.sd.interpretator.Enviroment;
 
 public class Pipe implements Expression {
@@ -12,9 +15,9 @@ public class Pipe implements Expression {
         second = snd;
     }
 
-    public String run(String stdin, Enviroment env) {
+    public String run(InputStream stdin, Enviroment env) {
         String stdout = first.run(stdin, env);
-        return second.run(stdout, env);
+        return second.run(new ByteArrayInputStream(stdout.getBytes()), env);
     }
     public void print() {
         System.out.println("=========");
