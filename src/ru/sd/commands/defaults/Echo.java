@@ -7,11 +7,11 @@ import ru.sd.interpretator.Enviroment;
  */
 public class Echo extends Command {
     protected void go(String args[], Enviroment env) {
+        String res = "";
         for(var a : args) {
-            jout.print(a);
-            jout.print(" ");
+            res += a + " ";
         }
-        jout.println();
+        jout.println(res.trim());
     }
     public Command clone() {
         return new Echo();

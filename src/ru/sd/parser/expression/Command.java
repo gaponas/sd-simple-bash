@@ -43,16 +43,18 @@ public class Command implements Expression {
 
         local.call(cmnd, args.toArray(new String[0]), in, out);
     }
-    public void print() {
-        System.out.println("=========");
-        System.out.println("Command");
+    public String print() {
+        String str = "";
         for(var a : assignments) {
-            a.print();
+            str += a.print() + " ";
         }
-        command.print();
+        str = str.trim();
+        str = str + " Command(" + command.print();
+        str = str.trim();
         for(var a : arguments) {
-            a.print();
+            str += ", " + a.print();
         }
-        System.out.println("_________");
+        str += ")";
+        return str;
     }
 }

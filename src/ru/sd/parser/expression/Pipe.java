@@ -28,13 +28,8 @@ public class Pipe implements Expression {
         first.run(in, mem, env);
         second.run(new ByteArrayInputStream(mem.toString().getBytes()), out, env);
     }
-    public void print() {
-        System.out.println("=========");
-        System.out.println("Pipe");
-        first.print();
-        System.out.println("-- then --");
-        second.print();
-        System.out.println("_________");
+    public String print() {
+        return "Pipe(" + first.print() + ", " + second.print() + ")";
     }
 
 }

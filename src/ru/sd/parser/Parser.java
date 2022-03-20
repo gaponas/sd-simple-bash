@@ -160,11 +160,12 @@ public class Parser {
     }
 
     /**
-     * Debug propose print
+     * Test propose print
      * @param exp Root expression 
      */
-    public void print(Expression exp) {
-        exp.print();
+    public String print() {
+        var ast = parse();
+        return ast.print();
     }
 
     private String[] makeSplitString(String text) {

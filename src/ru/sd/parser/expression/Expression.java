@@ -13,5 +13,5 @@ public interface Expression {
      * @param env Enviroment
      */
     void run(InputStream in, OutputStream out, Enviroment env);
-    void print();
+    String print();
 }

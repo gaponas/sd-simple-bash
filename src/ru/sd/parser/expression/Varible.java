@@ -20,10 +20,7 @@ public class Varible implements Expression {
         if(val == null) val = "";
         new PrintStream(out).print(val);
     }
-    public void print() {
-        System.out.println("=========");
-        System.out.println("Varible");
-        System.out.println(name);
-        System.out.println("_________");
+    public String print() {
+        return "Var(" + name + ")";
     }
 }

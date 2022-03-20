@@ -23,12 +23,7 @@ public class Assignment implements Expression {
         val.run(in, out, env);
         env.add(name, out.toString());
     }
-    public void print() {
-        System.out.println("=========");
-        System.out.println("Assignment");
-        System.out.println(name);
-        System.out.println("<-");
-        val.print();
-        System.out.println("_________");
+    public String print() {
+        return "Assignment(" + name + ", " + val.print() + ")";
     }
 }

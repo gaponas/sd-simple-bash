@@ -21,7 +21,11 @@ public class AssignCommand implements Expression {
             a.run(in, out, env);
         }
     }
-    public void print() {
-        System.out.println("Inner command");
+    public String print() {
+        String str = "";
+        for(var a : assignments) {
+            str += a.print() + " ";
+        }
+        return str.trim();
     }
 }

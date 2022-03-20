@@ -21,9 +21,7 @@ public class BadExpression implements Expression {
     public void run(InputStream in, OutputStream out, Enviroment env) {
         new PrintStream(out).println(reason);
     }
-    public void print() {
-        System.out.println("=========");
-        System.out.println(reason);
-        System.out.println("_________");
+    public String print() {
+        return "BadExpression(" + reason + ")";
     }
 }

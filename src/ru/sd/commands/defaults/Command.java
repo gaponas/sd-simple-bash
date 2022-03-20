@@ -13,6 +13,7 @@ import ru.sd.interpretator.Enviroment;
 public abstract class Command {
     protected Scanner jin;
     protected PrintStream jout;
+    InputStream inputStream;
     
     public abstract Command clone();
     /**
@@ -22,10 +23,11 @@ public abstract class Command {
      */
     protected abstract void go(String[] args, Enviroment env);
     public OutputStream run(String[] args, Enviroment env, InputStream in, OutputStream os) {
+        //TODO: stderr ...
+        inputStream = in;
         jin = new Scanner(in);
-        // OutputStream os = new ByteArrayOutputStream();
         jout = new PrintStream(os);
         go(args, env);
-        return os;
+        return jout;
     }
 }

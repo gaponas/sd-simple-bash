@@ -19,12 +19,12 @@ public class CommandManager {
     /**
      * Returns command by name.
      * @param name Command name
-     * @return Command 
+     * @return Command
      */
     public Command get(String name) {
         var cmnd = storage.get(name);
         if(cmnd == null) {
-            cmnd = new Empty();
+            cmnd = new External();
         }
         return cmnd.clone();
     }

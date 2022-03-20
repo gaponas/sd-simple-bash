@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 
 import ru.sd.commands.CommandManager;
+import ru.sd.commands.defaults.External;
 
 /**
  * Enviroment wrapper
@@ -39,7 +40,10 @@ public class Enviroment {
      * @return Output stream
      */
     public OutputStream call(String name, String args[], InputStream is, OutputStream os) {
-        return manager.get(name).run(args, this, is, os);
+        var proc = manager.get(name);
+        if(proc instanceof External)
+            return proc.run(new String[] { name + " " + String.join(" ", args) }, this, is, os);
+        return proc.run(args, this, is, os);
     }
 
     /**

@@ -54,14 +54,13 @@ public class WString implements Expression {
         var res = String.format(locString, strs.toArray());
         new PrintStream(out).print(res);
     }
-    public void print() {
-        System.out.println("=========");
-        System.out.println("String");
-        System.out.println(type);
-        System.out.println(text);
+    public String print() {
+        String res = "";
+        res += "String[" + type + "](" + text;
         for(var p : params) {
-            p.print();
+            res += ", " + p.print();
         }
-        System.out.println("_________");
+        res += ")";
+        return res;
     }
 }
