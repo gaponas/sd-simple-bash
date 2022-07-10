@@ -24,7 +24,6 @@ public class Ls extends Command {
 
     @Override
     protected void go(String[] args, Enviroment env) {
-        jout.println("env curr:"+env.getCurrDirPath());
         try {
             var res = go_inner(args, env);
             printAllFiles(res);
