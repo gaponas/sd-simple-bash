@@ -15,6 +15,8 @@ public class CommandManager {
         storage.put("exit", new Exit());
         storage.put("pwd", new Pwd());
         storage.put("add", new Add());
+        storage.put("cd", new Cd());
+        storage.put("ls", new Ls());
     }
     /**
      * Returns command by name.
