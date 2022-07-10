@@ -3,6 +3,7 @@ package ru.sd.commands.defaults;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import ru.sd.interpretator.Enviroment;
 
 import java.io.File;
 
@@ -11,16 +12,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class CdTest {
 
     Cd cdCommand = new Cd();
+    Enviroment env = new Enviroment();
 
 
     @Test
     public void tooManyArgsTest(){
         String[] arg = {"..", "~/"};
-        Assertions.assertThrows(CdException.class, ()->cdCommand.go_inner(arg));
+        Assertions.assertThrows(CdException.class, ()->cdCommand.go_inner(arg, env));
         var expRes = "too many arguments";
         String actRes = "";
         try{
-            cdCommand.go_inner(arg);
+            cdCommand.go_inner(arg, env);
         }
         catch (CdException e){
             actRes = e.getMessage();
@@ -32,7 +34,7 @@ class CdTest {
     public void zeroArgsTest() throws CdException {
         var expRes = System.getProperty("user.home");
         String[] arg ={};
-        var actRes = cdCommand.go_inner(arg);
+        var actRes = cdCommand.go_inner(arg, env);
         Assertions.assertEquals(expRes, actRes);
     }
 
@@ -40,7 +42,7 @@ class CdTest {
     public void goToHomeDirTest() throws CdException {
         var expRes = System.getProperty("user.home");
         String[] arg ={"~"};
-        var actRes = cdCommand.go_inner(arg);
+        var actRes = cdCommand.go_inner(arg, env);
         Assertions.assertEquals(expRes, actRes);
     }
 
@@ -48,11 +50,11 @@ class CdTest {
     public void setOldPwdExceptionTest(){
         String[] arg = {"-"};
         cdCommand = new Cd();
-        Assertions.assertThrows(CdException.class, ()->cdCommand.go_inner(arg));
+        Assertions.assertThrows(CdException.class, ()->cdCommand.go_inner(arg, env));
         String expRes = "OLDPWD not set";
         String actRes = "";
         try {
-            cdCommand.go_inner(arg);
+            cdCommand.go_inner(arg, env);
         }
         catch (CdException e){
             actRes = e.getMessage();
@@ -65,18 +67,18 @@ class CdTest {
         var expRes = System.getProperty("user.dir");
         zeroArgsTest();
         String[] arg = {"-"};
-        var actRes = cdCommand.go_inner(arg);
+        var actRes = cdCommand.go_inner(arg, env);
         Assertions.assertEquals(expRes, actRes);
     }
 
     @Test
     public void setWrongPwdTest(){
         String[] arg = {"/aa/a/asfgby_a"};
-        Assertions.assertThrows(CdException.class, ()->cdCommand.go_inner(arg));
+        Assertions.assertThrows(CdException.class, ()->cdCommand.go_inner(arg, env));
         var expRes = "no such file or directory";
         var actRes = "";
         try {
-            cdCommand.go_inner(arg);
+            cdCommand.go_inner(arg, env);
         }
         catch (CdException e){
             actRes = e.getMessage();
@@ -91,7 +93,7 @@ class CdTest {
         File newDirPath = new File(expRes);
         var isMakeNewDir = newDirPath.mkdir();
         String[] arg = {"testDir"};
-        var actRes = cdCommand.go_inner(arg);
+        var actRes = cdCommand.go_inner(arg, env);
         Assertions.assertEquals(expRes, actRes);
         if(isMakeNewDir){
             newDirPath.delete();
@@ -107,7 +109,7 @@ class CdTest {
         File newDirPath2 = new File(currDir+"/testDir1/testDir2");
         var isMakeNewDir2 = newDirPath2.mkdir();
         String[] arg = {"testDir1/testDir2"};
-        var actRes = cdCommand.go_inner(arg);
+        var actRes = cdCommand.go_inner(arg, env);
         Assertions.assertEquals(expRes, actRes);
         if(isMakeNewDir2){
             newDirPath2.delete();
@@ -124,7 +126,7 @@ class CdTest {
         File newDirPath = new File(expRes);
         var isMakeNewDir = newDirPath.mkdir();
         String[] arg = {"~/testDir"};
-        var actRes = cdCommand.go_inner(arg);
+        var actRes = cdCommand.go_inner(arg, env);
         Assertions.assertEquals(expRes, actRes);
         if(isMakeNewDir){
             newDirPath.delete();
@@ -142,11 +144,11 @@ class CdTest {
         File newDirPath3 = new File(currDir+"/testDir1/testDir3");
         var isMakeNewDir3 = newDirPath3.mkdir();
         String[] arg0 = {"testDir1/testDir2"};
-        cdCommand.go_inner(arg0);
+        cdCommand.go_inner(arg0, env);
 
         String[] arg = {"../testDir3"};
 
-        var actRes = cdCommand.go_inner(arg);
+        var actRes = cdCommand.go_inner(arg, env);
         Assertions.assertEquals(expRes, actRes);
 
         if(isMakeNewDir2){

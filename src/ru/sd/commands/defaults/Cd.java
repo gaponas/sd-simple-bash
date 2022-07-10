@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 public class Cd extends Command {
 
     String oldPath = null;
+    Enviroment envir;
 
     @Override
     public Command clone() {
@@ -18,26 +19,29 @@ public class Cd extends Command {
     @Override
     protected void go(String[] args, Enviroment env) {
         try {
-            go_inner(args);
+            go_inner(args, env);
         } catch (CdException e) {
             jout.println(e.getMessage());
         }
     }
 
-    protected String go_inner(String[] args) throws CdException {
-
+    protected String go_inner(String[] args, Enviroment env) throws CdException {
+        envir = env;
         if(args.length > 1){
             throw new CdException("too many arguments");
         }
 
         String resDir;
-        var startPath = System.getProperty("user.dir");
+        var startPath = envir.getCurrDirPath();
 
         if(args.length == 0){
             resDir = getHomePath();
         }
         else if(args[0].equals("-")){
             resDir = getOldPath();
+        }
+        else if(args[0].startsWith("/")){
+            resDir = getPath(args[0]);
         }
         else{
             var helpPath = args[0];
@@ -95,10 +99,10 @@ public class Cd extends Command {
     }
 
     private String getCurrDir(){
-        return System.getProperty("user.dir");
+        return envir.getCurrDirPath();
     }
 
     private void setCurrDir(String path){
-        System.getProperty("user.dir", path);
+        envir.setCurrDirPath(path);
     }
 }

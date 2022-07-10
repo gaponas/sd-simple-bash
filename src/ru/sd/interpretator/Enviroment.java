@@ -13,13 +13,15 @@ import ru.sd.commands.defaults.External;
 public class Enviroment {
     private HashMap<String, String> env;
     private CommandManager manager;
+    private GlobalEnviroment globalEnv;
 
     /**
      * Init enviroment with no command set
      */
     public Enviroment() { 
         env = new HashMap<String, String>();
-        manager = null; 
+        manager = null;
+        globalEnv= new GlobalEnviroment();
     }
 
     /**
@@ -28,7 +30,8 @@ public class Enviroment {
      */
     public Enviroment(CommandManager mngr) { 
         env = new HashMap<String, String>();
-        manager = mngr; 
+        manager = mngr;
+        globalEnv= new GlobalEnviroment();
     }
 
     /**
@@ -70,6 +73,15 @@ public class Enviroment {
     public Enviroment clone() {
         var tmp = new Enviroment(manager);
         tmp.env = new HashMap<String, String>(env);
+        tmp.globalEnv = globalEnv;
         return tmp;
+    }
+
+    public String getCurrDirPath(){
+        return globalEnv.getCurrDirPath();
+    }
+
+    public void setCurrDirPath(String path){
+         globalEnv.setCurrDirPath(path);
     }
 }
